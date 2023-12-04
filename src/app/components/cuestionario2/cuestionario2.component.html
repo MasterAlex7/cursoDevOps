@@ -1,0 +1,31 @@
+<body style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+    <div class="card" style="width: 95%;">
+        <div class="card-body">
+            <h5 class="card-title">Cuestionario 2</h5>
+            <p class="card-text">
+                <form>
+                    <div *ngFor="let pregunta of preguntas">
+                    <br>
+                      <p>{{ pregunta.enunciado }}</p>
+                      <div *ngFor="let opcion of pregunta.opciones">
+                        <label>
+                          <input
+                            type="radio"
+                            name="{{ pregunta.enunciado }}"
+                            [(ngModel)]="pregunta.respuestaUsuario"
+                            [value]="opcion"
+                          />
+                          {{ opcion }}
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-success" (click)="calificar()">Calificar</button>
+                  </form>
+        </div>
+    </div>
+    <br>
+    <div *ngIf="respuestaCorrecta > 0">
+        <p>Respuestas correctas: {{ respuestaCorrecta }} de {{ preguntas.length }}</p>
+    </div>
+    </body>
